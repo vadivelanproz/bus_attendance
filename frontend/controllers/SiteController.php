@@ -126,7 +126,6 @@ class SiteController extends Controller
             Yii::$app->session->set('usr_role',$log->role);
             Yii::$app->session->set('usr_name',$log->username);
             return $this->redirect(Yii::$app->request->baseUrl.'/site/index');
-
         } else {
             $this->layout = 'login';
             return $this->render('userlog', [
@@ -214,7 +213,7 @@ class SiteController extends Controller
     public function actionSignup()  {  
         if(Yii::$app->session->get('usr_role') != ''){
         $log = User::find()->where(['username' => Yii::$app->user->identity->username])->one();           
-           if($log->role == 'Admin' || $log->role == 'Superadmin') 
+           if(Yii::$app->session->get('usr_role')  == 'Admin' || Yii::$app->session->get('usr_role')  == 'Superadmin') 
             {      
                 $model = new SignupForm();
                 if ($model->load(Yii::$app->request->post())) {
@@ -230,7 +229,7 @@ class SiteController extends Controller
                 ]);
             }
             else {
-                return $this->redirect(Yii::$app->request->baseUrl.'/site/error'); 
+                return $this->redirect(Yii::$app->request->baseUrl.'/site/error403'); 
             }
         }
         else{

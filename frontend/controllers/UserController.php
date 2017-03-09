@@ -31,7 +31,7 @@ class UserController extends Controller
                         'roles' => ['?'],
                     ],
                      [
-                        'actions' => ['index','view','delete','update','create'],
+                        'actions' => ['index','create','view','delete','update'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -51,7 +51,7 @@ class UserController extends Controller
         if(Yii::$app->session->get('usr_role') != ''){
             $log = User::find()->where(['username' => Yii::$app->user->identity->username])->one(); 
     
-            if($log->role == 'Admin' || $log->role == 'Superadmin') 
+            if(Yii::$app->session->get('usr_role')  == 'Admin' || Yii::$app->session->get('usr_role')  == 'Superadmin') 
             {
             $searchModel = new UserSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -62,11 +62,12 @@ class UserController extends Controller
             }
             else
             {
-                return $this->redirect(Yii::$app->request->baseUrl.'/log/error');
+            return $this->redirect(Yii::$app->request->baseUrl.'/log/error');
             }
         }
-        else {
-            return $this->redirect(Yii::$app->request->baseUrl.'/site/login');    
+        else 
+        {            
+        return $this->redirect(Yii::$app->request->baseUrl.'/site/login');    
         }
         
     }
@@ -80,8 +81,7 @@ class UserController extends Controller
     {  
         if(Yii::$app->session->get('usr_role') != '') {
         $log = User::find()->where(['username' => Yii::$app->user->identity->username])->one();
-        
-            if($log->role == 'Admin' || $log->role == 'Superadmin') 
+         if(Yii::$app->session->get('usr_role')  == 'Admin' || Yii::$app->session->get('usr_role')  == 'Superadmin')  
             {
             return $this->render('view', [
                 'model' => $this->findModel($id),
@@ -109,31 +109,31 @@ class UserController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {   $log = User::find()->where(['username' => Yii::$app->user->identity->username])->one();
-        if(Yii::$app->session->get('usr_role') != '') {
-            if($log->role == 'Admin' || $log->role == 'Superadmin') 
-            {
-                $model = $this->findModel($id);
+    // public function actionUpdate($id)
+    // {   $log = User::find()->where(['username' => Yii::$app->user->identity->username])->one();
+    //     if(Yii::$app->session->get('usr_role') != '') {
+    //         if($log->role == 'Admin' || $log->role == 'Superadmin') 
+    //         {
+    //             $model = $this->findModel($id);
 
-                if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                    return $this->redirect(['view', 'id' => $model->id]);
-                } else {
-                    return $this->render('update', [
-                        'model' => $model,
-                    ]);
-                }
-            }
-            else
-            {
-            return $this->redirect(Yii::$app->request->baseUrl.'/log/error');
-            }
-        }
-        else {
-            return $this->redirect(Yii::$app->request->baseUrl.'/site/login'); 
-        }
+    //             if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    //                 return $this->redirect(['view', 'id' => $model->id]);
+    //             } else {
+    //                 return $this->render('update', [
+    //                     'model' => $model,
+    //                 ]);
+    //             }
+    //         }
+    //         else
+    //         {
+    //         return $this->redirect(Yii::$app->request->baseUrl.'/log/error');
+    //         }
+    //     }
+    //     else {
+    //         return $this->redirect(Yii::$app->request->baseUrl.'/site/login'); 
+    //     }
       
-    }
+    // }
 
     /**
      * Deletes an existing User model.
@@ -143,9 +143,8 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {   if(Yii::$app->session->get('usr_role') != '') {    
-        $log = User::find()->where(['username' => Yii::$app->user->identity->username])->one();
-        
-            if($log->role == 'Admin' || $log->role == 'Superadmin')  
+        $log = User::find()->where(['username' => Yii::$app->user->identity->username])->one();        
+        if(Yii::$app->session->get('usr_role')  == 'Admin' || Yii::$app->session->get('usr_role')  =='Superadmin')   
             {
             $this->findModel($id)->delete();
 
