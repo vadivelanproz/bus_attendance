@@ -13,17 +13,14 @@ use yii\db\Query;
 
 class ApiController extends \yii\web\Controller
 {
-    public function behaviors()
+  public function behaviors()
   {
-    return [
-      
+    return [      
       'verbs' => [
         'class' => VerbFilter::className(),
-        'actions' => [
-          
+        'actions' => [          
           'bus-in'=>['post'], 
-          'bus-out'=>['post'],                  
-                 
+          'bus-out'=>['post'], 
         ],        
       ]
     ];
@@ -53,10 +50,10 @@ class ApiController extends \yii\web\Controller
  
   //add the materil purchased in db
   public function actionBusIn() {       
-   $params = Yii::$app->getRequest()->getBodyParams();
-   date_default_timezone_set('Asia/Kolkata');
-   $id =Yii::$app->getRequest()->getQueryParam('rf_id');
-   $bus = $this->findModel($id); 
+    $params = Yii::$app->getRequest()->getBodyParams();
+    date_default_timezone_set('Asia/Kolkata');
+    $id =Yii::$app->getRequest()->getQueryParam('rf_id');
+    $bus = $this->findModel($id); 
     $model = new Log();
     $model->timestamp = date("H:i");
     $model->log_date = date("Y-m-d");
@@ -71,7 +68,7 @@ class ApiController extends \yii\web\Controller
       echo json_encode(array_filter($model->errors),JSON_PRETTY_PRINT);
     }     
   } 
-    public function actionBusOut() {       
+  public function actionBusOut() {       
    $params = Yii::$app->getRequest()->getBodyParams();
     date_default_timezone_set('Asia/Kolkata');
    $id =Yii::$app->getRequest()->getQueryParam('rf_id');
@@ -97,13 +94,11 @@ class ApiController extends \yii\web\Controller
     }
     else {
       $this->setHeader(400);
-      echo json_encode(array('status'=>"error",'data'=>array('message'=>'Bad request')),JSON_PRETTY_PRINT);
+      echo json_encode(array('message'=>'Invalid RF ID'),JSON_PRETTY_PRINT);
       exit;
     }
   }
-  
-
-  //setting the header 
+    //setting the header 
     private function setHeader($status) {    
       $status_header = 'HTTP/1.1 ' . $status . ' ' . $this->_getStatusCodeMessage($status);
       $content_type = "application/json";  

@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
     <div class="col-md-3 col-sm-3 col-xs-12">
     <?= $form->field($model, 'bus_no')->textInput(['style' => 'text-transform: uppercase']) ?>
      </div>
-    <div></br> </div>
+    <div></br></div>
      <div class="col-md-3 col-sm-3 col-xs-12">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

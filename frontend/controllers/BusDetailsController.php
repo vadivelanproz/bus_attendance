@@ -42,7 +42,6 @@ class BusDetailsController extends Controller
            
         ];
     }
-
     /**
      * Lists all BusDetails models.
      * @return mixed
@@ -62,7 +61,6 @@ class BusDetailsController extends Controller
         }
         
     }
-
     /**
      * Displays a single BusDetails model.
      * @param integer $id
@@ -80,7 +78,6 @@ class BusDetailsController extends Controller
         }
         
     }
-
     /**
      * Creates a new BusDetails model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -104,7 +101,6 @@ class BusDetailsController extends Controller
         }
         
     }
-
     /**
      * Updates an existing BusDetails model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -159,11 +155,8 @@ class BusDetailsController extends Controller
         }
         else {
         return $this->redirect(Yii::$app->request->baseUrl.'/site/login');    
-        }
-        
-
+        }    
     }
-
     /**
      * Finds the BusDetails model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

@@ -1,9 +1,6 @@
 <?php
-
-
 /* @var $this \yii\web\View */
 /* @var $content string */
-
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -18,25 +15,20 @@ use common\widgets\Alert;
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
-
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php AppAsset::register($this); $this->head();  ?>
 </head>
 <body class="nav-md">
-
    <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="#" class="site_title"><span>BUS MONITOR</span></a>
-            </div>       
-
-            <!-- menu profile quick info -->
-          <h4 style="margin-left:45px;">Welcome</h4>
-            <!-- /menu profile quick info -->
-         <h4 style="margin-left:45px;color:red"> <?php echo
+              <a href="#" class="site_title"><span>BUS MANAGEMENT</span></a>
+            </div>           
+          <h4 style="margin-left:45px;">Welcome</h4>           
+          <h4 style="margin-left:45px;color:red"> <?php echo
                 Yii::$app->session->get('usr_name');?></h4>
             <br/>
             <br/>       
@@ -128,13 +120,7 @@ use common\widgets\Alert;
 
                   </div>
                 </div>
-              </div>
-
-
-             
-
-
-            
+              </div>       
             </div>
           </div>
         </div>
@@ -143,7 +129,7 @@ use common\widgets\Alert;
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Powerd by <a href="wwww.pro-z.in">ProZ Solutions</a>
+            Powerd by <a href="http://www.knowledgeelectronics.in/">Knowledge Electronics</a> Developed by <a href="http://www.pro-z.in">ProZ</a>
           </div>
           <div class="clearfix"></div>
         </footer>

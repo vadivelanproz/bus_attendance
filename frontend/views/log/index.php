@@ -72,19 +72,34 @@ $this->params['breadcrumbs'][] = $this->title;
             
             'label' => 'R No',
             'value' => 'bus.r_no',
-             'format' => 'raw',
+            'format' => 'raw',
             ],
-            [
-            
+            [            
             'label' => 'Date',
             'value' => 'log_date',
-             'format' => ['date','php:d-m-Y']
+            'format' => ['date','php:d-m-Y']
             ],           
             
             [
             'attribute' => 'timestamp',        
             
             ],
+            //insert into log(bus_no,rf_id)SELECT bus_details.bus_no,bus_details.rf_id FROM bus_details LEFT JOIN log on bus_details.rf_id = log.rf_id WHERE log.log_date IS NULL 
+            [           
+            'header'=>'Status',           
+            'format'=>'raw',    
+            'value' => function($model, $key, $index, $column)
+            {                   
+               if($model->timestamp <= '09:00:00')
+                {
+                  return '<i class="green">IN-ONTIME</i>';
+                }
+                else
+                {   
+                  return '<i class="green">IN</i>-<i class="red">Late</i>';
+                }
+            },
+        ],     
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
@@ -104,9 +119,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],[
             "sExtends"=> "xls",
             "oSelectorOpts"=> ["page"=> 'current']
-            ],[
-            "sExtends"=> "pdf",
-            "sButtonText"=> Yii::t('app',"Save to PDF")
             ],
         ]
         ]

@@ -23,19 +23,14 @@ $this->params['breadcrumbs'][] = $this->title;
    
     <?= DataTables::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-       
-         
+        'filterModel' => $searchModel,           
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            //'bus_id',
+            ['class' => 'yii\grid\SerialColumn'],   
             'bus_no',
             'r_no',
             'driver_name',
             'rf_id',
-             'route',
-
+            'route',
             ['class' => 'yii\grid\ActionColumn'],
         ],
         'clientOptions' => [
@@ -54,9 +49,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],[
             "sExtends"=> "xls",
             "oSelectorOpts"=> ["page"=> 'current']
-            ],[
-            "sExtends"=> "pdf",
-            "sButtonText"=> Yii::t('app',"Save to PDF")
             ],
         ]
         ]

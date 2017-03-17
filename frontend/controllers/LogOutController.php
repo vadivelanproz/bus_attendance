@@ -114,7 +114,7 @@ class LogOutController extends Controller
         }
         }
         else{
-           return $this->redirect(Yii::$app->request->baseUrl.'/log-out/error403'); 
+           return $this->redirect(['error403']); 
         }
         }
         else{
@@ -139,7 +139,7 @@ class LogOutController extends Controller
         
         }else
         {
-           return $this->redirect(['error403']);
+           return $this->redirect(['error']);
         }
     }
         else

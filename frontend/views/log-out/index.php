@@ -81,6 +81,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'timestamp',        
             
             ],
+            [           
+            'header'=>'Status',
+            'filter' => ['Y'=>'Active', 'N'=>'Deactive'],
+            'format'=>'raw',    
+            'value' => function($model, $key, $index, $column)
+            {   
+                if($model->timestamp >= '16:45:00')
+                {
+                    return '<i class="green">OUT</i>';
+                }
+                else
+                {   
+                    return '<i class="red">Quick</i>';
+                }
+            },
+        ],     
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
@@ -100,9 +116,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],[
             "sExtends"=> "xls",
             "oSelectorOpts"=> ["page"=> 'current']
-            ],[
-            "sExtends"=> "pdf",
-            "sButtonText"=> Yii::t('app',"Save to PDF")
             ],
         ]
         ]

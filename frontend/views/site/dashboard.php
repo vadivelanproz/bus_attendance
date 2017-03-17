@@ -61,7 +61,23 @@ foreach ($log as $rows) {
             'label' => date('d-m-Y'),
             'value' => 'timestamp',
              'format' => 'raw',
-            ],        
+            ],  
+            [           
+            'header'=>'Status',
+            'filter' => ['Y'=>'Active', 'N'=>'Deactive'],
+            'format'=>'raw',    
+            'value' => function($model, $key, $index, $column)
+            {   
+                if($model->timestamp <= '09:00:00')
+                {
+                    return '<i class="green">ONTIME</i>';
+                }
+                else
+                {   
+                    return '<i class="green">IN-</i>|<i class="red">-Late</i>';
+                }
+            },
+            ],           
         ],
          'clientOptions' => [
         
@@ -95,7 +111,24 @@ foreach ($log as $rows) {
             'label' => date('d-m-Y'),
             'value' => 'timestamp',
              'format' => 'raw',
-            ],        
+            ], 
+                [           
+            'header'=>'Status',
+            'filter' => ['Y'=>'Active', 'N'=>'Deactive'],
+            'format'=>'raw',    
+            'value' => function($model, $key, $index, $column)
+            {   
+                if($model->timestamp >= '17:45:00')
+                {
+                    return '<i class="green">OUT</i>';
+                }
+                else
+                {   
+                    return '<i class="red">Quick</i>';
+                }
+            },
+            ], 
+                 
         ],
          'clientOptions' => [
         

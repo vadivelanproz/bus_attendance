@@ -5,8 +5,17 @@ $params = array_merge(
     require(__DIR__ . '/params.php'),
     require(__DIR__ . '/params-local.php')
 );
-
 return [
+    'modules' => [
+        'reportico' => [
+        'class' => 'reportico\reportico\Module' ,
+        'controllerMap' => [
+            'reportico' => 'reportico\reportico\controllers\ReporticoController',
+            'mode' => 'reportico\reportico\controllers\ModeController',
+            'ajax' => 'reportico\reportico\controllers\AjaxController',
+            ]
+        ],     
+    ],
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
@@ -14,7 +23,7 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
-        ],
+        ],        
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -45,15 +54,13 @@ return [
             'api/bus-out' => 'api/bus-out',
             'api/bus-in' => 'api/bus-in',
 
-
             ],
         ],
         'request' => [
             'parsers' => [
                'application/json' => 'yii\web\JsonParser',
             ]
-         ],
-        
+         ],    
         
        'formatter' => [
        'class' => 'yii\i18n\Formatter',
@@ -61,7 +68,9 @@ return [
        'datetimeFormat' => 'd-M-Y H:i:s',
        'timeFormat' => 'H:i:s', ]
     ],
+
     
     'params' => $params,
     'defaultRoute' => 'site/login',
+
 ];

@@ -15,12 +15,11 @@ AppAsset::register($this);
 <?php $this->beginPage() ?>
 <!DOCTYPE HTML>
 <html lang="<?= Yii::$app->language ?>">
-<head>
-    
+<head>    
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   <title></title>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <link rel="stylesheet" href="<?= Yii::$app->request->baseUrl.'/css/bootstrap.min.css' ?>">
   <style type="text/css">
    
 body{

@@ -7,6 +7,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Log;
 
+
 /**
  * LogSearch represents the model behind the search form about `app\models\Log`.
  */
@@ -16,6 +17,7 @@ class LogSearch extends Log
     /**
      * @inheritdoc
      */
+    public $rc_no; 
     public $from_date;
     public $to_date;
     public function rules()
@@ -23,7 +25,7 @@ class LogSearch extends Log
         return [
             [['log_id', 'rf_id','bus_no'], 'integer'],
             [['timestamp', 'dir'], 'safe'],
-
+            ['rc_no', 'safe'],
             [['from_date','to_date'],'safe'],
         ];
     }
@@ -70,6 +72,10 @@ class LogSearch extends Log
         $query->orderBy(['log_date' => SORT_DESC]);
         $query->andFilterWhere(['like', 'dir', $this->dir])
          ->andFilterWhere(['between', 'log_date', $this->from_date, $this->to_date]);
+     
+
+
+
 
         return $dataProvider;
     }

@@ -1,7 +1,6 @@
 <?php
 
 namespace frontend\controllers;
-
 use Yii;
 use app\models\Log;
 use yii\db\Query;
@@ -41,8 +40,7 @@ class LogController extends Controller
                     ],
                     
                 ],
-            ],
-            
+            ],             
            
         ];
     }
@@ -167,7 +165,7 @@ public function actionRfid()
         }
         else
         {
-           return $this->redirect(Yii::$app->request->baseUrl.'/log/error403');
+           return $this->redirect(['error403']);
         }
         }
         else{
